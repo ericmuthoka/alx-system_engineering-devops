@@ -1,2 +1,2 @@
 #!/bin/bash
-echo "The third line of iacta is: $line"
+head -3 | tail -1
