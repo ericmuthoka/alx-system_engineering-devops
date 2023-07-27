@@ -1,22 +1,25 @@
 #!/usr/bin/env bash
-# Bash script to loop through numbers from 1 to 10 using a while loop.
 
-current_number=1
+# Bash script to display numbers from 1 to 20 with special messages for specific loop iterations using a while loop and case statement.
 
-while [ $current_number -le 10 ]; do
-    case $current_number in
+count=1
+while [ $count -le 20 ]; do
+    case $count in
         4)
-            echo "4 and then bad luck from China"
+            echo $count
+            echo "bad luck from China"
             ;;
         9)
-            echo "9 and then bad luck from Japan"
+            echo $count
+            echo "bad luck from Japan"
             ;;
         17)
-            echo "17 and then bad luck from Italy"
+            echo $count
+            echo "bad luck from Italy"
             ;;
         *)
-            echo $current_number
+            echo $count
             ;;
     esac
-    ((current_number++))
+    ((count++))
 done
