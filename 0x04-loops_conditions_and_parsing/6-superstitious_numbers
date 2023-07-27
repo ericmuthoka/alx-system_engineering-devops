@@ -1,25 +1,19 @@
 #!/usr/bin/env bash
+# Write a Bash script that displays numbers from 1 to 20 and sentences at given lines
 
-# Bash script to display numbers from 1 to 20 with special messages for specific loop iterations using a while loop and case statement.
-
-count=1
-while [ $count -le 20 ]; do
-    case $count in
-        4)
-            echo $count
-            echo "bad luck from China"
-            ;;
-        9)
-            echo $count
-            echo "bad luck from Japan"
-            ;;
-        17)
-            echo $count
-            echo "bad luck from Italy"
-            ;;
-        *)
-            echo $count
-            ;;
-    esac
-    ((count++))
+i=1
+while [ $i -le 20 ]; do
+	if [ $i -eq 4 ]; then
+		echo "4
+		bad luck from China"
+	elif [ $i -eq 9 ]; then
+		echo "9
+		bad luck from Japan"
+	elif [ $i -eq 17 ]; then
+		echo "17
+		bad luck from Italy"
+	else
+		echo $i
+	fi
+	i=$((i+1))
 done
