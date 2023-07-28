@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script displays a list of currently running processes with hierarchy.
+
+# Use ps command to get the process list and display in user-oriented format
+ps -eH -o pid,ppid,user,%cpu,%mem,cmd
+
+# Explanation of options used with 'ps':
+# -e: Select all processes (even those without a controlling terminal)
+# -H: Display a tree-like structure to represent process hierarchy
+# -o: Define the output format with specified columns (pid, ppid, user, %cpu, %mem, cmd)
