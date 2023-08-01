@@ -1,2 +1,5 @@
 #!/usr/bin/env ruby
-puts ARGV[0].scan(/hbt{2,5}n/).join
+
+input_string = ARGV[0]
+
+puts input_string.gsub(/hbt{2,5}n/, '')
