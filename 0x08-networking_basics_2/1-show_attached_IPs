@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 # This script displays all active IPv4 addresses on the machine.
 
 # Use ifconfig to get network interface information,
