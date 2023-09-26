@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # command used to fix the issue
 
-docker run -p 8080:80 -d -it holbertonschool/265-0
-docker exec -it <CONTAINER_ID> bash -c "echo 'Hello Holberton' > /var/www/html/index.html"
+cd /var/www/html
+echo "Hello Holberton" > index.html
