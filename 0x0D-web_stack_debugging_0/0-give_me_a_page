@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 # command used to fix the issue
-/etc/init.d/apache2 start
+
+cd /var/www/html
+echo "Hello Holberton" > index.html
