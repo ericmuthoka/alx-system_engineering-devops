@@ -1,0 +1,21 @@
+global
+    maxconn 4096
+    log /dev/log local0
+    log /dev/log local1 notice
+
+defaults
+    log global
+    mode http
+    option httplog
+    option dontlognull
+    timeout connect 5000
+    timeout client 50000
+    timeout server 50000
+
+frontend www-frontend
+    bind *:443 ssl crt /etc/letsencrypt/live/www.ericmuthoka.tech/fullchain.pem
+    reqadd X-Forwarded-Proto:\ https
+    default_backend www-backend
+
+backend www-backend
+    server www-server your_web_server_ip:80 check
