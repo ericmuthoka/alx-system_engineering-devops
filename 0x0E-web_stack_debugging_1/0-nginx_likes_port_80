@@ -1,38 +1,19 @@
-#!/usr/bin/env bash
-# Check if Nginx is already running
-if [[ -n $(systemctl status nginx | grep "active (running)") ]]; then
-    # Nginx is already running, so restart it
-    systemctl restart nginx
-else
-    # Nginx is not running, so start it
-    systemctl start nginx
-fi
+#!/bin/bash
+# This script installs and configures Nginx to listen on port 80
 
-# Check if Nginx is listening on port 80
-if [[ -n $(netstat -ano | grep 80 | grep nginx) ]]; then
-    # Nginx is listening on port 80, so we are done
-    echo "Nginx is listening on port 80."
-else
-    # Nginx is not listening on port 80, so we need to fix that
-    echo "Nginx is not listening on port 80. Fixing..."
+# Install Nginx (if not already installed)
+apt-get update
+apt-get install -y nginx
 
-    # Edit the Nginx configuration file
-    sudo nano /etc/nginx/nginx.conf
+# Configure Nginx to listen on port 80
+echo "server {
+    listen 80;
+    server_name _;
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+}" > /etc/nginx/sites-available/default
 
-    # Find the line that says "listen 80;" and uncomment it
-    # If the line is not there, add it
-
-    # Save and exit the Nginx configuration file
-
-    # Restart Nginx
-    systemctl restart nginx
-
-    # Check if Nginx is now listening on port 80
-    if [[ -n $(netstat -ano | grep 80 | grep nginx) ]]; then
-        # Nginx is now listening on port 80
-        echo "Nginx is now listening on port 80."
-    else
-        # Nginx is still not listening on port 80
-        echo "Failed to configure Nginx to listen on port 80."
-    fi
-fi
+# Restart Nginx
+systemctl restart nginx
