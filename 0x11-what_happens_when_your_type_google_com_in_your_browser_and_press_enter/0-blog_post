@@ -1,0 +1,36 @@
+When you type "https://www.google.com" in your browser and hit Enter, you initiate a complex series of events that lead to the display of Google's webpage on your screen. Let's break down the steps involved in this journey:
+
+1. DNS Request:
+Your computer first needs to determine the IP address of "www.google.com" to establish a connection. It sends a DNS (Domain Name System) request to a DNS resolver, which looks up the IP address associated with the domain "www.google.com."
+
+2. TCP/IP:
+Once the IP address is obtained, a Transmission Control Protocol (TCP) connection is established between your computer and the IP address. TCP ensures reliable and ordered communication, breaking data into packets for transmission and reassembling them at the destination.
+
+3. Firewall:
+The request passes through your computer's firewall, a security barrier that filters incoming and outgoing traffic based on predefined rules. The firewall ensures that the request meets the necessary security criteria before proceeding.
+
+4. HTTPS/SSL:
+In the case of "https://" in the URL, a Secure Sockets Layer (SSL) or Transport Layer Security (TLS) handshake occurs. This establishes an encrypted connection between your browser and the web server, ensuring secure data transmission.
+
+5. Load-Balancer:
+For major websites like Google, incoming requests are distributed across multiple servers using a load balancer. The load balancer's role is to evenly distribute the load and direct the request to an available web server to optimize performance and reliability.
+
+6. Web Server:
+The request reaches a web server, which is a specialized computer designed to serve web pages. The web server processes the request and may fetch data from a database or an application server, depending on the request.
+
+7. Application Server:
+In some cases, the web server forwards the request to an application server. The application server is responsible for processing the request, executing necessary logic, and generating dynamic content based on the request. This could involve querying databases or performing specific calculations.
+
+8. Database:
+If the application server needs to retrieve data, it might interact with a database. The server queries the database for the required information, processes it, and prepares a response.
+
+9. Response:
+After the necessary data is collected, the server generates a response. This response typically includes HTML, CSS, JavaScript, and other resources required to render the webpage.
+
+10. Transmission:
+The response is transmitted back through the same channels, passing through the application server, web server, and load balancer. The data is encrypted using HTTPS/SSL for secure transmission.
+
+11. Rendering:
+Finally, the received data is rendered by your browser based on the HTML, CSS, and JavaScript instructions. The webpage's content, as designed by Google, is displayed on your screen.
+
+In conclusion, the journey from typing "https://www.google.com" to seeing the webpage involves a multi-step process that includes DNS resolution, establishing a secure connection, load balancing, interacting with various servers, and rendering the webpage to provide you with the Google experience you're familiar with. Understanding this process is vital for anyone working in the field of software engineering, particularly in roles related to web development and infrastructure management.
