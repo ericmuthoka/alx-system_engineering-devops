@@ -1,31 +1,42 @@
 #!/usr/bin/python3
-"""Access a REST API to retrieve employees'
-todo lists and display their progress."""
+"""Fetch and display an employee's TODO list progress from a REST API."""
 
 import requests
 import sys
 
-if __name__ == '__main__':
-    employeeId = sys.argv[1]
-    baseUrl = "https://jsonplaceholder.typicode.com/users"
-    url = baseUrl + "/" + employeeId
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        sys.stderr.write("Usage: {} <employee_id>\n".format(sys.argv[0]))
+        sys.exit(1)
 
-    response = requests.get(url)
-    employeeName = response.json().get('name')
+    employee_id = sys.argv[1]
 
-    todoUrl = url + "/todos"
-    response = requests.get(todoUrl)
-    tasks = response.json()
-    done = 0
-    done_tasks = []
+    base_url = "https://jsonplaceholder.typicode.com"
+    user_url = "{}/users/{}".format(base_url, employee_id)
+    todos_url = "{}/todos?userId={}".format(base_url, employee_id)
 
-    for task in tasks:
-        if task.get('completed'):
-            done_tasks.append(task)
-            done += 1
+    try:
+        user_response = requests.get(user_url)
+        todos_response = requests.get(todos_url)
 
-    print("Employee {} is done with tasks({}/{}):"
-          .format(employeeName, done, len(tasks)))
+        user_data = user_response.json()
+        todos_data = todos_response.json()
 
-    for task in done_tasks:
-        print("\t {}".format(task.get('title')))
+        if not user_data:
+            print("No employee found with ID: {}".format(employee_id))
+            sys.exit(1)
+
+        employee_name = user_data.get("name")
+        completed_tasks = [task for task in todos_data if task["completed"]]
+        total_tasks = len(todos_data)
+        num_completed_tasks = len(completed_tasks)
+
+        print("Employee {} is done with tasks({}/{}):".format(
+            employee_name, num_completed_tasks, total_tasks))
+
+        for task in completed_tasks:
+            print("\t{}".format(task["title"]))
+
+    except requests.exceptions.RequestException as e:
+        print("Error: Unable to connect to the API.")
+        sys.exit(1)
