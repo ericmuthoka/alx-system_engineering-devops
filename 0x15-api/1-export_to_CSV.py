@@ -1,10 +1,10 @@
 #!/usr/bin/python3
 """Access a REST API to retrieve employee's TODO list and export to CSV."""
 
+
 import csv
 import requests
 import sys
-
 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -33,10 +33,12 @@ if __name__ == '__main__':
 
         with open(csv_filename, 'w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file)
-            csv_writer.writerow(['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
+            csv_writer.writerow(['USER_ID', 'USERNAME',
+                                'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
 
             for task in todos_data:
-                csv_writer.writerow([employee_id, username, task["completed"], task["title"]])
+                csv_writer.writerow([employee_id, username,
+                                    task["completed"], task["title"]])
 
         print("Data exported to {}".format(csv_filename))
 
