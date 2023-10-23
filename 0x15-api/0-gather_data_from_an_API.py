@@ -35,7 +35,7 @@ if __name__ == "__main__":
             employee_name, num_completed_tasks, total_tasks))
 
         for task in completed_tasks:
-            print("\t{}".format(task["title"]))
+            print("\t{}".format(task["title"]))  # Remove extra space
 
     except requests.exceptions.RequestException as e:
         print("Error: Unable to connect to the API.")
