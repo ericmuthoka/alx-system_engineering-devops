@@ -4,6 +4,7 @@
 import requests
 import sys
 
+
 if __name__ == "__main__":
     if len(sys.argv) != 2:
         sys.stderr.write("Usage: {} <employee_id>\n".format(sys.argv[0]))
