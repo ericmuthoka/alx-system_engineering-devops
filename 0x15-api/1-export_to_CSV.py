@@ -1,11 +1,11 @@
 #!/usr/bin/python3
-"""Fetch and export employee's TODO list to CSV format."""
+"""Access a REST API to retrieve employee's TODO list and export to CSV."""
 
 import requests
 import sys
 import csv
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) != 2:
         sys.stderr.write("Usage: {} <employee_id>\n".format(sys.argv[0]))
         sys.exit(1)
@@ -27,15 +27,15 @@ if __name__ == "__main__":
             print("No employee found with ID: {}".format(employee_id))
             sys.exit(1)
 
-        employee_name = user_data.get("username")
+        username = user_data.get("username")
         csv_filename = "{}.csv".format(employee_id)
 
         with open(csv_filename, 'w', newline='') as csv_file:
             csv_writer = csv.writer(csv_file)
-            csv_writer.writerow(["USER_ID", "USERNAME", "TASK_COMPLETED_STATUS", "TASK_TITLE"])
+            csv_writer.writerow(['USER_ID', 'USERNAME', 'TASK_COMPLETED_STATUS', 'TASK_TITLE'])
 
             for task in todos_data:
-                csv_writer.writerow([employee_id, employee_name, task["completed"], task["title"]])
+                csv_writer.writerow([employee_id, username, task["completed"], task["title"]])
 
         print("Data exported to {}".format(csv_filename))
 
