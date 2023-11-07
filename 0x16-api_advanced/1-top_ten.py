@@ -6,6 +6,7 @@ Prints titles of the first 10 hot posts in a Reddit subreddit.
 
 from requests import get
 
+
 def top_ten(subreddit):
     """
     Queries the Reddit API and displays titles of the first
